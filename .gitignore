@@ -1,3 +1,4 @@
+.gitignore
 .DS_Store
 build
 p52.egg-info
