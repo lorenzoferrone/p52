@@ -1,0 +1,8 @@
+.DS_Store
+build
+p52.egg-info
+p5-reference
+**/__pycache__/
+p52/static/update.ipynb
+p52/static/update.py
+p52/static/data.js
