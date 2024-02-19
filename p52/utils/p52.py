@@ -21,3 +21,7 @@ def center():
 
 def map(t, a, b, x, y):
     return (t - a) / (b - a) * (y - x) + x
+
+
+def injectJs(name):
+    print(f"injecting {name}")

@@ -17,3 +17,7 @@ from ..utils.p52 import *  # custom stuff I added
 
 # 'fake' empty object so that can we use it w/o warning inside the sketch
 self = {}
+
+
+def injectJs(name):
+    pass

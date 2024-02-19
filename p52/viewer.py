@@ -23,8 +23,14 @@ def launch_viewer(sketch):
         sys.tracebacklimit = 0
         raise Exception("Quitting!")
 
+    # optional window size read from command line
+    try:
+        width, height = int(sys.argv[1]), int(sys.argv[2])
+    except:
+        width, height = 1200, 800
+
     window = webview.create_window(
-        sketch.barename, url=str(sketch.targetFolder / "index.html"), js_api=App(sketch), width=1200, height=800
+        sketch.barename, url=str(sketch.targetFolder / "index.html"), js_api=App(sketch), width=width, height=height
     )
     window.events.closing = window.events.closing + on_closing
     webview.start(debug=True, http_server=True)

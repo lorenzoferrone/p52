@@ -1,5 +1,5 @@
 # type: ignore
-from p52 import map  # it comes from fakeModules.p52
+from p52 import map  # it comes from utils.p52
 
 
 def subdivide(start, end, n):

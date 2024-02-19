@@ -31,6 +31,8 @@ from .static.allDefinition import *
 
 # come integrare eventuali altre librerie javascript??
 #    da testare, ma dovrebbe bastare importare il file (import file.js)
+#    facendo solo import non funzionerà mai con file js fatti per essere messi in un tag <script>, ma
+#    solo con file che fanno export dei loro attributi....
 
 # come modificare comportamenti di p5js direttamente a runtime (ad esempio cambiare le coordinate)?
 #    BOH, penso impossibile, bisognerebbe accedere al runtime di p5js... che però mentre sto compilando
