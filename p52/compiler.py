@@ -21,7 +21,7 @@ def precompile(sketch):
         lines = src.readlines()
         injectLines = [l for l in lines if "injectJs" in l]
         modules = [re.findall("\((.+)\)", l)[0][1:-1] for l in injectLines]
-        modules = [sketch.folder / module for module in modules]
+        modules = [f"../{module}" for module in modules]
 
     return modules
 
@@ -29,9 +29,7 @@ def precompile(sketch):
 def compileSketch(sketch):
 
     injections = precompile(sketch)
-    injectedModules = "\n".join([f'<script src="{module}"></script>' for module in injections])
-
-    print(injectedModules)
+    injectedModules = "\n".join([f'<script type="module" src="{module}"></script>' for module in injections])
 
     # modulesPath = f"{fakeModulesPath}${realModulesPath}"
     outputFolder = sketch.targetFolder / "__target__"
