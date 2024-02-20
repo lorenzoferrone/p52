@@ -6,7 +6,7 @@ Write your p5js sketches with python and automatically launch them in a new wind
 Also included: autoreload on save!
 
 # Installation
-`pip install p5two`
+be sure to have the latest pip version and then `pip install p5two`
 
 
 # Usage
