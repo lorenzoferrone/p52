@@ -19,6 +19,6 @@ async def main():
         await asyncio.Future()  # run forever
 
 
-def launch_reload_server():
+def launchReloadServer():
     t = Thread(target=lambda: asyncio.run(main()), args=[], daemon=True)
     t.start()

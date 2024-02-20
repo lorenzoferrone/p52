@@ -1,27 +1,40 @@
+# this is the entry point of the entire package.
+# when you `import` this module from the python sketch you end up here
+# this script is then responsible to compile to javascript the sketch it was imported from
+# and launch the viewer
+
+
 import inspect
 import pathlib
 
-from .compiler import compileSketch, launch_recompiler_observer
-from .viewer import launch_viewer
+from .compiler import compileSketch, launchRecompilerObserver
+from .viewer import launchViewer
 from .sketchClass import SketchInfo
-from .reloader import launch_reload_server
+from .reloader import launchReloadServer
 
 
+# get the path of the sketch this script is imported from
 importFile = inspect.stack()[-1]
 sketchPath = pathlib.Path(importFile.filename).resolve()
 
-
+# store useful info inside a sketch class (folder, name, temp folder to hold de compiled js and so on)
 sketch = SketchInfo(sketchPath)
+
+# launch the compile process
 compileSketch(sketch)
 
-launch_reload_server()
-launch_recompiler_observer(sketch)
-launch_viewer(sketch)
+# launch the services responsible for auto reload and recompile on save
+launchReloadServer()
+launchRecompilerObserver(sketch)
+
+# launch the viever
+launchViewer(sketch)
 
 
-# import definition file just to have autocomplete in the sketch file
+# import definition file just to have autocomplete work in the sketch file
 from .static.allDefinition import *
 
+# ----
 
 # TODO:
 # come far funzionare "pop", "map" e simili (al momento sono metodi di python, non di p5js)?

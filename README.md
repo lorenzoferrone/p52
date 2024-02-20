@@ -6,9 +6,7 @@ Write your p5js sketches with python and automatically launch them in a new wind
 Also included: autoreload on save!
 
 # Installation
-The package is not yet published, so you have to install it as a local package
-download the repo, `cd` into it and then
-`pip3 install .`
+`pip install p5two`
 
 
 # Usage
@@ -73,4 +71,4 @@ if you have a js library that you would like to use inside the sketch you can do
 
 
 # How does it work?
-This package is heavily inspired by the library pyp5js and leverages transcrypt to compile python to javascript.
+This package is heavily inspired by the library pyp5js and leverages transcrypt to compile python to javascript behind the scenes.

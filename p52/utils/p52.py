@@ -6,7 +6,7 @@
 # ie: pop, map, center, etc
 
 
-# funziona perché js_pop è predefinito dentro transcrypt
+# this works because js_pop is defined inside transcrypt itseld
 def pop():
     window.js_pop()
 
@@ -23,5 +23,6 @@ def map(t, a, b, x, y):
     return (t - a) / (b - a) * (y - x) + x
 
 
+# empty 'definition' of the injectJs function, which is actually implemented inside the compiler logic
 def injectJs(name):
     print(f"injecting {name}")
