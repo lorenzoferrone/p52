@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/lorenzoferrone/p52
+Homepage = "https://github.com/lorenzoferrone/p52"
 
 [tool.setuptools.package-data]
 "p52.static" = ["index.html"]
