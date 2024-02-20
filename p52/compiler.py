@@ -23,6 +23,18 @@ def getJSModules(sketch):
         return [re.findall("\((.+)\)", l)[0][1:-1] for l in injectLines]
 
 
+def injectModules(sketch):
+    # copy js modules inside the new folder and prepare the <src> tags to inject inside index.html
+    # and return the tags to inject
+    modules = getJSModules(sketch)
+    moduleSrcTagsList = []
+    for module in modules:
+        shutil.copy2(sketch.folder / module, sketch.targetFolder)
+        moduleSrcTagsList.append(f'<script src="{module}"></script>')
+
+    return "\n".join(moduleSrcTagsList)
+
+
 def compileSketch(sketch):
 
     outputFolder = sketch.targetFolder / "__target__"
@@ -30,13 +42,7 @@ def compileSketch(sketch):
     subprocess.run(command, shell=True)
 
     # copy js modules inside the new folder and prepare the <src> tags to inject inside index.html
-    modules = getJSModules(sketch)
-    moduleSrcTagsList = []
-    for module in modules:
-        shutil.copy2(sketch.folder / module, sketch.targetFolder)
-        moduleSrcTagsList.append(f'<script src="{module}"></script>')
-
-    modulesSrcTags = "\n".join(moduleSrcTagsList)
+    modulesSrcTags = injectModules(sketch)
 
     with open(package_dir / "static" / "index.html") as inputFile, open(
         sketch.targetFolder / "index.html", "w"
