@@ -16,3 +16,15 @@ def heightRange(buffer=0):
 
 def randomPoint(buffer=0):
     return random(*widthRange(buffer)), random(*heightRange(buffer))
+
+
+# TODO: capire come funziona per le rotation
+def getRealCoord(x, y):
+    matrix = drawingContext.getTransform()
+
+    rotation = atan2(matrix.b, matrix.a)
+    scale_x = sqrt(matrix.a**2 + matrix.c**2)
+    scale_y = sqrt(matrix.b**2 + matrix.d**2)
+    realX, realY = matrix.e / scale_x, matrix.f / scale_y
+
+    return x - realX, y - realY

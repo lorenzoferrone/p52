@@ -18,10 +18,10 @@ class App:
 
 
 def launchViewer(sketch):
-    def on_closing():
-        # minimize traceback output as it is a 'fake' exception
-        sys.tracebacklimit = 0
-        raise Exception("Quitting!")
+    # def on_closing():
+    #     # minimize traceback output as it is a 'fake' exception
+    #     sys.tracebacklimit = 0
+    #     # raise Exception("Quitting!")
 
     # optional window size read from command line
     try:
@@ -30,5 +30,5 @@ def launchViewer(sketch):
         width, height = 1200, 800
 
     window = webview.create_window(sketch.barename, url=str(sketch.indexFile), js_api=App(sketch), width=width, height=height)
-    window.events.closing = window.events.closing + on_closing
+    # window.events.closing = window.events.closing + on_closing
     webview.start(debug=True, http_server=True)

@@ -12,3 +12,8 @@ from ..utils.p52 import *  # custom stuff I added
 
 # 'fake' empty object so that can we use it w/o warning inside the sketch
 self = {}
+
+
+# fake __new__ to use inside the sketch
+def __new__():
+    pass

@@ -30,7 +30,10 @@ def injectModules(sketch):
     modules = getJSModules(sketch)
     moduleSrcTagsList = []
     for module in modules:
-        shutil.copy2(sketch.folder / module, sketch.targetFolder)
+        try:
+            shutil.copy2(sketch.folder / module, sketch.targetFolder)
+        except FileNotFoundError:
+            pass
         moduleSrcTagsList.append(f'<script src="{module}"></script>')
 
     return "\n".join(moduleSrcTagsList)
