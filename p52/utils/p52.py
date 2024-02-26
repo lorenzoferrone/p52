@@ -6,7 +6,7 @@
 # ie: pop, map, center, etc
 
 
-# this works because js_pop is defined inside transcrypt itseld
+# this works because js_pop is defined inside transcrypt itself
 def pop():
     window.js_pop()
 
