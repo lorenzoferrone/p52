@@ -25,4 +25,5 @@ def map(t, a, b, x, y):
 
 # empty 'definition' of the injectJs function, which is actually implemented inside the compiler logic
 def injectJs(name):
+    """inject a js source file/url into the sketch"""
     print(f"injecting {name}")

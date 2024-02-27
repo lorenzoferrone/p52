@@ -36,10 +36,32 @@ except KeyboardInterrupt:
     print("should clean here")
 
 
-# import definition file just to have autocomplete work in the sketch file
-# TODO: studiare meglio come funzionano gli import
-from .static.allDefinition import *
+# ----------------
 
+
+# import definition files just to have autocomplete work in the sketch file
+# these "import"s are only needed to have autocomplete inside the sketch
+# these are never actually run by python (the execution of the python script itself terminates with the sys.exit(0) call
+import sys
+
+sys.exit(0)
+
+from .static.p5definition import *  # original p5 definition
+from .utils.p52 import *  # custom stuff I added
+
+
+# empty definition of the transcrypt __new__ function, in order to have autocomplete inside the sketch
+# la metto qui invece che dentro utils in modo da non dover fare __all__ = [...] anche dentro quel file
+def __new__(cls):
+    """instantiate a js class"""
+    print(f"instantiating {cls}")
+    return cls
+
+
+# unfortunately I have to add all the exported name here just because otherwise "__new__" would not be exported
+# it seems that I cannot do something like "__all__.extend(["__new__"])"
+
+# NOTE: ogni volta che aggiungo qualche funzione a utils (o a p5definition) devo aggiornare __all__
 
 __all__ = [
     "ADD",
@@ -520,10 +542,11 @@ __all__ = [
 #    al momento ho reimplementato map, ma in questo modo sovrascrivo pymap
 #    continuare a testare per capire  se si rompe qualcos'altro
 
+
 # come integrare eventuali altre librerie javascript??
-#    da testare, ma dovrebbe bastare importare il file (import file.js)
-#    facendo solo import non funzionerà mai con file js fatti per essere messi in un tag <script>, ma
-#    solo con file che fanno export dei loro attributi....
+# per i file che esportano attributi basta fare import(lib.js), che è supportato da tranascrypt
+# per gli altri file ho implementato la funzione "injectJs"
+
 
 # come modificare comportamenti di p5js direttamente a runtime (ad esempio cambiare le coordinate)?
 #    BOH, penso impossibile, bisognerebbe accedere al runtime di p5js... che però mentre sto compilando
